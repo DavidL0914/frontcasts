@@ -16,6 +16,15 @@
             <p id="error-message" style="display: none; color: red;"></p>
             <button type="button" onclick="saveSettings()">Save Changes</button>
         </form>
+        <h2>Change Username</h2>
+        <form id="change-username-form">
+            <input type="text" id="current-username" class="input" placeholder="Current Username">
+            <input type="text" id="current-uid" class="input" placeholder="Current User ID">
+            <input type="password" id="current-password" class="input" placeholder="Current Password">
+            <input type="text" id="new-username" class="input" placeholder="New Username">
+            <p id="username-error-message" style="display: none; color: red;"></p>
+            <button type="button" onclick="changeUsername()">Change Username</button>
+        </form>
     </div>
     <script>
         // Function to save settings
@@ -72,6 +81,38 @@
         if (savedTheme) {
             document.getElementById("theme").value = savedTheme;
             applyTheme(savedTheme);
+        }
+        // Function to change username
+        function changeUsername() {
+            const currentUsername = document.getElementById("current-username").value;
+            const currentUid = document.getElementById("current-uid").value;
+            const currentPassword = document.getElementById("current-password").value;
+            const newUsername = document.getElementById("new-username").value;
+            fetch('http://127.0.0.1:8008/api/users/change_username', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    currentUsername: currentUsername,
+                    currentUid: currentUid,
+                    currentPassword: currentPassword,
+                    newUsername: newUsername
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to change username.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert('Username changed successfully');
+                console.log(data);
+            })
+            .catch(error => {
+                document.getElementById("username-error-message").innerText = error.message;
+                document.getElementById("username-error-message").style.display = "block";
+                console.error('Error:', error);
+            });
         }
     </script>
 </body>
