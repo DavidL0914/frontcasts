@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>User Settings</h2>
+        <h2>Theme Customization</h2>
         <form id="settings-form">
             <input type="text" id="uid" class="input" placeholder="User ID">
             <input type="text" id="username" class="input" placeholder="Username">
@@ -42,7 +42,7 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('User does not exist');
+                    throw new Error('User or theme does not exist.');
                 }
                 return response.json();
             })
