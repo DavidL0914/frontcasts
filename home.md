@@ -11,15 +11,15 @@ search_exclude: true
     <link rel="stylesheet" href="frontcasts-styling.scss">
 </head>
 <body>
-
+f
 <nav>
-    <a href="http://127.0.0.1:4100/frontcasts/signup">Signup</a>
-    <a href="http://127.0.0.1:4100/frontcasts/edit">Edit</a>
-    <a href="http://127.0.0.1:4100/frontcasts/data">Data</a>
-    <a href="http://127.0.0.1:4100/frontcasts/settings">User Settings</a>
-    <a href="http://127.0.0.1:4100/frontcasts/image.html">Forum</a>
-    <a href="http://127.0.0.1:4100/frontcasts/search.html">Search</a>
-    <a href="http://127.0.0.1:4100/frontcasts/image">Share</a>
+    <a onclick='window.location.href="{{site.baseurl}}/signup"'>Signup</a>
+    <a onclick='window.location.href="{{site.baseurl}}/edit"'>Edit</a>
+    <a onclick='window.location.href="{{site.baseurl}}/data"'>Data</a>
+    <a onclick='window.location.href="{{site.baseurl}}/settings"'>User Settings</a>
+    <a onclick='window.location.href="{{site.baseurl}}/image.html"'>Forum</a>
+    <a onclick='window.location.href="{{site.baseurl}}/search.html"'>Search</a>
+    <a onclick='window.location.href="{{site.baseurl}}/image"'>Share</a>
     <button class = "logoutbutton" onclick="eraseCookie()">Logout</button>
 </nav>
 
@@ -45,7 +45,7 @@ search_exclude: true
             return
         }
         else {
-            window.location.href = "http://127.0.0.1:4100/frontcasts/login.html"
+            window.location.href = "{{site.baseurl}}/login.html"
         }
     })
 

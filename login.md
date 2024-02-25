@@ -16,7 +16,7 @@
 </div>
 <script>
 function switchToSignup() {
-    window.location.href = "http://127.0.0.1:4100/frontcasts/signup.html";
+    window.location.href = "{{site.baseurl}}/signup.html";
 }
 function login() {
     data = {
@@ -32,7 +32,7 @@ function login() {
         body: JSON.stringify(data),
         credentials: 'include'
     }
-    fetch('http://127.0.0.1:8008/api/users/authenticate', options)
+    fetch("{{site.backendurl}}/api/users/authenticate", options)
     .then(response => {
         if (response.ok) {
             // Handle successful login
@@ -48,7 +48,7 @@ function login() {
                 console.log('JWT Token not found');
             }
             // Redirect to the desired page after successful login
-            window.location.href = "http://127.0.0.1:4100/frontcasts/home";
+            window.location.href = "{{site.baseurl}}/home";
         }
         else {
             // Handle incorrect login information
@@ -60,8 +60,8 @@ function login() {
     });
 }
 function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
+    const value = "; ${document.cookie}";
+    const parts = value.split("; ${name}=");
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 </script>

@@ -23,7 +23,7 @@ function search() {
     document.querySelector(".info").style.display = "none"
     const query = document.getElementById("query").value;
     const api_key = "353ca5d1296e4a1187d417811123d58b";
-    const search_api_url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}&query=${query}`;
+    const search_api_url = "https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}&query=${query}";
             fetch(search_api_url, options)
             .then(response => response.json())
             .then(data => {
@@ -39,7 +39,7 @@ function fetchinfo(id) {
     if (document.getElementById("recipediv").innerHTML != ""){ 
         document.getElementById("recipediv").innerHTML = ""
     }
-    const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
+    const info_api_url = "https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}";
     fetch(info_api_url, options)
     .then(response => response.json())
     .then(data => {

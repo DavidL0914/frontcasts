@@ -103,7 +103,7 @@
                 credentials: 'include'
             };
             // Send the text data to the backend
-            fetch('http://127.0.0.1:8008/api/users/image', options)
+            fetch("{{site.backendurl}}/api/users/image", options)
                 .then(response => {
                     if (response.ok) {
                         // Handle successful submission
@@ -134,7 +134,7 @@
                 },
                 credentials: 'include'
             };
-            fetch("http://127.0.0.1:8008/api/users/image", options)
+            fetch("{{site.backendurl}}/api/users/image", options)
                 .then(response => {
                     let access = response.status !== 403;
                     return response.json().then(data => ({ data, access }));
