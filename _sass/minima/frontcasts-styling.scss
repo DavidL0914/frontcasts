@@ -1,15 +1,16 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-:root{
-    --primary-color: #fff;
-    --secondary-color: #333;
+:root {
+  --primary-color: #fff;
+  --secondary-color: #333;
 }
-.dark-theme{
-    --primary-color: #333;
-    --secondary-color: #fff;
+
+.dark-theme {
+  --primary-color: #333;
+  --secondary-color: #fff;
 }
 
 .info {
@@ -21,33 +22,35 @@
   border-radius: 5px;
   margin-top: 25px;
 }
+
 .logoutbutton {
   color: red
 }
+
 .form-container {
-    text-align: center;
-    background-color: #fff; /* Optional: Add a background color */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #fff; /* Optional: Add a background color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .input:focus {
-    outline: none;
-    border-color: #007bff; /* Change focus color as needed */
+  outline: none;
+  border-color: #007bff; /* Change focus color as needed */
 }
 
 #user, #pass {
-    margin-bottom: 16px; /* Optional: Adjust the space between inputs */
+  margin-bottom: 16px; /* Optional: Adjust the space between inputs */
 }
 
 // Styling
@@ -55,14 +58,14 @@
 $primary-color: #3498db; 
 
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-y: auto;
-    display: flex;
-    background: url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=pexels-ella-olsson-1640772.jpg&fm=jpg') center center fixed;
-    background-size: cover;
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  background: url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=pexels-ella-olsson-1640772.jpg&fm=jpg') center center fixed;
+  background-size: cover;
+}
 
 .form-container {
   min-width: 400px;
@@ -70,42 +73,44 @@ body {
   text-align: center;
 
   h2 {
-    font-size: 28px;
-    color: $primary-color;
-    margin-bottom: 20px;
+      font-size: 28px;
+      color: $primary-color;
+      margin-bottom: 20px;
   }
 
   form {
-    margin-bottom: 20px;
+      margin-bottom: 20px;
   }
 
   .input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
   }
+
   p {
-    color: red;
-    margin-top: 10px;
+      color: red;
+      margin-top: 10px;
   }
+
   button {
-    background-color: $primary-color;
-    color: var(--primary-color);
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
+      background-color: $primary-color;
+      color: var(--primary-color);
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+  }
 }
 
-}
 button {
-    border: none;
-    background-color: $primary-color;
-    color: var(--primary-color);
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
+  border: none;
+  background-color: $primary-color;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 body {
@@ -118,14 +123,17 @@ body {
 tr, td {
   background-color: var(--primary-color);
 }
+
 #data {
   background-color: $primary-color;
   padding: 10px;
 } 
+
 nav {
   background-color: var(--primary-color);
   overflow: hidden;
 }
+
 nav button {
   background-color:var(--primary-color);
   float: left;  
@@ -137,6 +145,7 @@ nav button {
   text-decoration: none;
   transition: background-color 0.3s;
 }
+
 nav a {
   float: left;
   display: block;
@@ -156,7 +165,8 @@ nav a.active {
   background-color: #4CAF50;
   color: white;
 }
-  nav button:hover {
+
+nav button:hover {
   background-color: #ddd;
   color: black;
 }
@@ -165,6 +175,7 @@ nav button.active {
   background-color: #4CAF50;
   color: white;
 }
+
 .headnav {
   background-color: var(--primary-color);
   padding: 10px 0;
@@ -187,6 +198,7 @@ nav button.active {
 .headnav a:hover {
   color: black;
 }
+
 #allsearch {
   display: flex;
   left: 50%;
@@ -194,14 +206,17 @@ nav button.active {
   justify-content: center;
   flex-direction: column;
 }
+
 header.site-header {
   background-color: rgb(0, 0, 0);
   color: var(--secondary-color);
   text-align: left;
 }
+
 strong {
   font-size: x-large;
 }
+
 #recipediv {
   background-color: var(--primary-color);
   align-content: center;
@@ -209,6 +224,7 @@ strong {
   padding: 30px;
   border-radius: 5px;
 }
+
 .recipe {
   top: 25%;
   display: flex;
@@ -221,14 +237,14 @@ strong {
   color: black;
   
   img {
-    max-width: 100%;
-    height: auto;
-    font-weight: bold;
+      max-width: 100%;
+      height: auto;
+      font-weight: bold;
   }
 }
 
 .query {
   margin-top: 10px;
   padding: 10px;
-  border-radius: 2px
+  border-radius: 2px;
 }
