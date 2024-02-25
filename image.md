@@ -171,7 +171,7 @@ layout: wow
    </head>
    <body>
       <nav class="headnav">
-         <a href="http://127.0.0.1:4100/frontcasts/home.html">Home</a>
+         <a onclick='window.location.href="{{site.baseurl}}/home.html"'>Home</a>
       </nav>
       <div class="container">
          <div class="form-container">
