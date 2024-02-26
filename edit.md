@@ -9,12 +9,12 @@
     <div class="container">
         <pre id="data"></pre>
         <form>
-            <input type="text" id="username" class="input">
-            <input type="text" id="uid" class="input">
+            <input type="text" id="username" class="input" placeholder = "New Username">
+            <input type="text" id="uid" class="input" placeholder = "User ID">
         </form>
         <button class="submit" onclick="update()">Change Username</button>
         <form>
-            <input type="text" id="_uid" class="input">
+            <input type="text" id="_uid" class="input" placeholder = "User ID">
         </form>
         <button class="submit" onclick="del()">Delete User</button>
     </div>
@@ -28,8 +28,7 @@
         function update() {
             data = {
                 "name": document.getElementById("username").value,
-                "uid": document.getElementById("uid").value,
-                "role": "admin"
+                "uid": document.getElementById("uid").value
             }
             let options = {
                 method: 'PUT',

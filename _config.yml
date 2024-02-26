@@ -3,9 +3,7 @@ description: "August 2023 to June 2024"
 owner_name: David Lee
 github_username: DavidL 0914
 github_repo: "frontcasts"
-#baseurl: "/" for local, 127 for local, otherwise use /frontcasts and ncs link
 baseurl: "/frontcasts"
-# baseurl: "/frontcasts"
 backendurl: "http://127.0.0.1:8008" 
 # backendurl: "https://backcasts.stu.nighthawkcodingsociety.com/"
 remote_theme: jekyll/minima

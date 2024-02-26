@@ -8,15 +8,9 @@
 </div>
 </html>
 <script>
-function generateHTMLTable(data) {
-    let htmlTable = "<table><thead><tr><th>ID</th><th>Image</th><th>Name</th><th>Role</th><th>UID</th></tr></thead><tbody>";
-    data.forEach(item => {
-        htmlTable += `<tr><td>${item.id}</td><td>${item.image}</td><td>${item.name}</td><td>${item.role}</td><td>${item.uid}</td></tr>`;
-    });
-    htmlTable += "</tbody></table>";
-    return htmlTable;
-}
-let options = {
+window.onload = getData()
+function getData() {
+    let options = {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -37,4 +31,13 @@ let options = {
                 document.getElementById("data").textContent = "Unauthorized.";
             }
         })
+}
+function generateHTMLTable(data) {
+    let htmlTable = "<table><thead><tr><th>ID</th><th>Image</th><th>Name</th><th>Role</th><th>UID</th></tr></thead><tbody>";
+    data.forEach(item => {
+        htmlTable += `<tr><td>${item.id}</td><td>${item.image}</td><td>${item.name}</td><td>${item.role}</td><td>${item.uid}</td></tr>`;
+    });
+    htmlTable += "</tbody></table>";
+    return htmlTable;
+}
 </script>
