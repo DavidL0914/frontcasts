@@ -4,8 +4,8 @@ owner_name: David Lee
 github_username: DavidL 0914
 github_repo: "frontcasts"
 baseurl: "/frontcasts"
-# backendurl: "http://127.0.0.1:8008" 
-backendurl: "https://backcasts.stu.nighthawkcodingsociety.com/"
+backendurl: "http://127.0.0.1:8008" 
+# backendurl: "https://backcasts.stu.nighthawkcodingsociety.com/"
 remote_theme: jekyll/minima
 # remote_theme: pages-themes/dinky@v0.2.0
 # remote_theme: pages-themes/minimal@v0.2.0
