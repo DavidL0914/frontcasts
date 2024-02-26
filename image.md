@@ -192,7 +192,7 @@ layout: wow
             </div>
          </div>
       </div>
-      <script>
+    <script>
          function submitImage() {
              // Get the text content from the textarea
              let imageContent = document.getElementById("image").value;
@@ -219,7 +219,7 @@ layout: wow
                  .then(response => {
                      if (response.ok) {
                          // Handle successful submission
-                         document.getElementById("error").innerHTML = "Image submitted successfully";
+                         document.getElementById("error").innerHTML = "Post successfully uploaded";
                          // Fetch updated images after submission
                          fetchImages();
                      } else {
@@ -228,7 +228,7 @@ layout: wow
                              if (errorData && errorData.message) {
                                  document.getElementById("error").innerHTML = errorData.message;
                              } else {
-                                 document.getElementById("error").innerHTML = "Error submitting image";
+                                 document.getElementById("error").innerHTML = "Error submitting post";
                              }
                          });
                      }
@@ -240,7 +240,6 @@ layout: wow
          }
          
          function fetchImages() {
-         console.log("Current Page: ", currentPage);
          
          let options = {
          method: 'GET',
@@ -254,7 +253,7 @@ layout: wow
          fetch("http://127.0.0.1:8008/api/users/name", options)
          .then(response => response.json())
          .then(usernames => {
-         // Now fetch image data
+         // Now fetch post data
          fetch("http://127.0.0.1:8008/api/users/image", options)
              .then(response => {
                  let access = response.status !== 403;
@@ -342,7 +341,7 @@ layout: wow
          }
          
          let currentPage = 1;
-         const postsPerPage = 5;
+         const postsPerPage = 7;
          
          function changePage(direction) {
          currentPage += direction;
