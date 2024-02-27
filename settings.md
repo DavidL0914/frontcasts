@@ -84,18 +84,14 @@
         }
         // Function to change username
         function changeUsername() {
-            const currentUsername = document.getElementById("current-username").value;
             const currentUid = document.getElementById("current-uid").value;
-            const currentPassword = document.getElementById("current-password").value;
             const newUsername = document.getElementById("new-username").value;
-            fetch('http://127.0.0.1:8008/api/users/change_username', {
-                method: 'POST',
+            fetch('http://127.0.0.1:8008/api/users/name', {
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    currentUsername: currentUsername,
-                    currentUid: currentUid,
-                    currentPassword: currentPassword,
-                    newUsername: newUsername
+                    uid: currentUid,
+                    new_name: newUsername
                 })
             })
             .then(response => {
