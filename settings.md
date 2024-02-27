@@ -96,7 +96,7 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Failed to change username.');
+                    throw new Error('User does not exist.');
                 }
                 return response.json();
             })
