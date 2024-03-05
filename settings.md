@@ -3,14 +3,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Settings</title>
-    <link rel="stylesheet" href="frontcasts-styling.scss">
+    <style>
+        .form-container {
+            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Theme Customization</h2>
         <form id="settings-form">
-            <input type="text" id="uid" class="input" placeholder="User ID">
-            <input type="text" id="username" class="input" placeholder="Username">
+            <input type="text" id="uid" class="input" placeholder="Username">
+            <input type="text" id="username" class="input" placeholder="User ID">
             <input type="password" id="password" class="input" placeholder="Password">
             <input type="text" id="theme" class="input" placeholder="Theme (light/dark)">
             <p id="error-message" style="display: none; color: red;"></p>
@@ -68,12 +81,24 @@
         }
         // Function to apply theme
         function applyTheme(theme) {
+            const formContainer = document.querySelector('.form-container');
+            const inputs = document.querySelectorAll('.input');
             if (theme === 'light') {
                 document.documentElement.style.setProperty('--primary-color', '#fff');
                 document.documentElement.style.setProperty('--secondary-color', '#333');
+                formContainer.style.backgroundColor = '#fff'; // Set background color to light
+                inputs.forEach(input => {
+                    input.style.backgroundColor = '#fff';
+                    input.style.color = '#333';
+                });
             } else if (theme === 'dark') {
                 document.documentElement.style.setProperty('--primary-color', '#333');
                 document.documentElement.style.setProperty('--secondary-color', '#fff');
+                formContainer.style.backgroundColor = '#333'; // Set background color to dark
+                inputs.forEach(input => {
+                    input.style.backgroundColor = '#333';
+                    input.style.color = '#fff';
+                });
             }
         }
         // Retrieve theme setting from localStorage and apply it
