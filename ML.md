@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -93,7 +93,12 @@
 
         /* Style for button on hover */
         button:hover {
-            background-color: #45a049; /* Darken background color on hover */
+            background-color: #34749e; /* Darken background color on hover */
+        }
+
+        /* Add border bottom to focused input container */
+        .focused {
+            border-bottom: 2px solid #3498db;
         }
     </style>
 </head>
@@ -125,51 +130,69 @@
         <button onclick="predict()">Get Prediction %</button>
         <div id="result"></div> <!-- Placeholder for displaying result -->
     </div>
-    <script>
-        function predict() {
-            var data = {
-                "height": parseFloat(document.getElementById("height").value),
-                "sugar": parseFloat(document.getElementById("sugar").value),
-                "activity": parseFloat(document.getElementById("activity").value),
-                "bodyfat": parseFloat(document.getElementById("bodyfat").value),
-                "age": parseFloat(document.getElementById("age").value)
-            };
-            var options = {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(data)
-            };
-            fetch("http://127.0.0.1:8008/api/predict/", options)
-                .then(response => response.json())
-                .then(result => {
-                    // Display the result inside the div
-                    document.getElementById("result").innerHTML = `
-                        <div id="diabetic">${result}</div>
-                    `;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+<script>
+    function predict() {
+        // Get input values
+        var height = parseFloat(document.getElementById("height").value);
+        var sugar = parseFloat(document.getElementById("sugar").value);
+        var activity = parseFloat(document.getElementById("activity").value);
+        var bodyfat = parseFloat(document.getElementById("bodyfat").value);
+        var age = parseFloat(document.getElementById("age").value);
+
+        // Check if any input value is invalid
+        if (isNaN(height) || isNaN(sugar) || isNaN(activity) || isNaN(bodyfat) || isNaN(age)) {
+            // Display error message
+            document.getElementById("result").innerHTML = `
+                <div id="diabetic" style="color: red;">Please enter valid numeric values for all inputs.</div>
+            `;
+            return; // Stop execution
         }
 
-        // JavaScript to handle focus event on input boxes
-        document.addEventListener("DOMContentLoaded", function() {
-            var inputContainers = document.querySelectorAll('.input-container input');
-            inputContainers.forEach(function(input) {
-                input.addEventListener('focus', function(event) {
-                    event.target.parentNode.classList.add('focused');
-                });
-                input.addEventListener('blur', function(event) {
-                    if (!event.target.value.trim()) {
-                        event.target.parentNode.classList
-                                            .focused {
-                        border-bottom: 2px solid #3498db; /* Add border bottom when focused */
-                    }
-                });
+        // Prepare data for prediction request
+        var data = {
+            "height": height,
+            "sugar": sugar,
+            "activity": activity,
+            "bodyfat": bodyfat,
+            "age": age
+        };
+
+        var options = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        };
+
+        // Send prediction request
+        fetch("http://127.0.0.1:8008/api/predict/", options)
+            .then(response => response.json())
+            .then(result => {
+                // Display the result inside the div
+                document.getElementById("result").innerHTML = `
+                    <div id="diabetic">${result}</div>
+                `;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // JavaScript to handle focus event on input boxes
+    document.addEventListener("DOMContentLoaded", function() {
+        var inputContainers = document.querySelectorAll('.input-container input');
+        inputContainers.forEach(function(input) {
+            input.addEventListener('focus', function(event) {
+                event.target.parentNode.classList.add('focused');
+            });
+            input.addEventListener('blur', function(event) {
+                if (!event.target.value.trim()) {
+                    event.target.parentNode.classList.remove('focused');
+                }
             });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
