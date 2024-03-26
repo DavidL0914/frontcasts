@@ -1,5 +1,8 @@
-<html>
+
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diabetes Predictor</title>
     <style>
         body {
@@ -19,6 +22,7 @@
             background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
             border-radius: 10px; /* Add rounded corners */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add box shadow for depth */
+
         }
 
         /* Style for the diabetes percent text */
@@ -33,6 +37,22 @@
         }
 
         /* Style for input boxes */
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .unit-label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: black;
+            font-size: 16px;
+            font-weight: normal;
+            transition: all 0.3s ease;
+        }
+
         input[type="text"] {
             width: calc(100% - 22px); /* Set input width to 100% minus padding and border */
             padding: 10px; /* Add padding for better appearance */
@@ -41,6 +61,22 @@
             border-radius: 5px; /* Add rounded corners for the input */
             box-sizing: border-box; /* Include padding and border in input's total width */
             background-color: #f2f2f2; /* Set background color for input */
+            transition: all 0.3s ease;
+        }
+
+        /* Animation for input placeholder */
+        input[type="text"]:focus ~ .unit-label,
+        input[type="text"]:not(:placeholder-shown) ~ .unit-label {
+            top: 0;
+            font-size: 12px;
+            color: #3498db; /* Change color on focus */
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus::placeholder,
+        input[type="text"]:not(:placeholder-shown)::placeholder {
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         /* Style for button */
@@ -65,11 +101,26 @@
     <div class="container">
         <h2 style="text-align: center;">Diabetes Predictor</h2>
         <form>
-            <input id="height" type="text" placeholder="Height in cm">
-            <input id="sugar" type="text" placeholder="Weekly sugar intake in g">
-            <input id="activity" type="text" placeholder="Weekly activity in hours">
-            <input id="bodyfat" type="text" placeholder="Approximate Bodyfat %">
-            <input id="age" type="text" placeholder="Age">
+            <div class="input-container">
+                <input id="height" type="text" placeholder=''>
+                <label class="unit-label">Height (cm)</label>
+            </div>
+            <div class="input-container">
+                <input id="sugar" type="text" placeholder="">
+                <label class="unit-label">Weekly sugar intake (g)</label>
+            </div>
+            <div class="input-container">
+                <input id="activity" type="text" placeholder="">
+                <label class="unit-label">Weekly activity (hours)</label>
+            </div>
+            <div class="input-container">
+                <input id="bodyfat" type="text" placeholder="">
+                <label class="unit-label">Approximate Bodyfat (%)</label>
+            </div>
+            <div class="input-container">
+                <input id="age" type="text" placeholder="">
+                <label class="unit-label">Age (years)</label>
+            </div>
         </form>
         <button onclick="predict()">Get Prediction %</button>
         <div id="result"></div> <!-- Placeholder for displaying result -->
@@ -102,6 +153,23 @@
                     console.error('Error:', error);
                 });
         }
+
+        // JavaScript to handle focus event on input boxes
+        document.addEventListener("DOMContentLoaded", function() {
+            var inputContainers = document.querySelectorAll('.input-container input');
+            inputContainers.forEach(function(input) {
+                input.addEventListener('focus', function(event) {
+                    event.target.parentNode.classList.add('focused');
+                });
+                input.addEventListener('blur', function(event) {
+                    if (!event.target.value.trim()) {
+                        event.target.parentNode.classList
+                                            .focused {
+                        border-bottom: 2px solid #3498db; /* Add border bottom when focused */
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
