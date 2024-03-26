@@ -68,20 +68,19 @@
             <input id="height" type="text" placeholder="Height in cm">
             <input id="sugar" type="text" placeholder="Weekly sugar intake in g">
             <input id="activity" type="text" placeholder="Weekly activity in hours">
-            <input id="weight" type="text" placeholder="Weight in kg">
+            <input id="bodyfat" type="text" placeholder="Approximate Bodyfat %">
             <input id="age" type="text" placeholder="Age">
         </form>
         <button onclick="predict()">Get Prediction %</button>
         <div id="result"></div> <!-- Placeholder for displaying result -->
     </div>
-
     <script>
         function predict() {
             var data = {
                 "height": parseFloat(document.getElementById("height").value),
                 "sugar": parseFloat(document.getElementById("sugar").value),
                 "activity": parseFloat(document.getElementById("activity").value),
-                "weight": parseFloat(document.getElementById("weight").value),
+                "bodyfat": parseFloat(document.getElementById("bodyfat").value),
                 "age": parseFloat(document.getElementById("age").value)
             };
             var options = {
