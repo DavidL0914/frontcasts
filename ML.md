@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -188,7 +187,7 @@
             });
             input.addEventListener('blur', function(event) {
                 if (!event.target.value.trim()) {
-                    event.target.parentNode.classList.remove('focused');
+                    event.target.parentNode.classList.remove('0.focused');
                 }
             });
         });
