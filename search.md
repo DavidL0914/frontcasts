@@ -9,10 +9,9 @@
 <p id="info" class="info-text">Welcome to our recipe searcher!<br>Input any prompt into the text box,<br>and click the search button.<br>The results will include the name of the dish with a <br>button to show the recipe, and an image of the finished product.<br></p>
 </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div id = "instructions" class = "instructions"></div>
 <script>
-const api_key = "353ca5d1296e4a1187d417811123d58b";
+const apiKey = "353ca5d1296e4a1187d417811123d58b";
 const options = {
                 method: 'GET',
                 headers: {
@@ -22,9 +21,9 @@ const options = {
 function search() {
     document.querySelector(".info").style.display = "none"
     const query = document.getElementById("query").value;
-    const api_key = "353ca5d1296e4a1187d417811123d58b";
-    const search_api_url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}&query=${query}`;
-            fetch(search_api_url, options)
+    const apiKey = "353ca5d1296e4a1187d417811123d58b";
+    const searchApiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`;
+            fetch(searchApiUrl, options)
             .then(response => response.json())
             .then(data => {
                 displayRecipes(data.results);
@@ -35,13 +34,13 @@ function search() {
         }
         let currentPage = 1;
 const recipesPerPage = 2;
-function fetchinfo(id) {
+function fetchInfo(id) {
     if (document.getElementById("recipediv").innerHTML != "") {
         document.getElementById("recipediv").innerHTML = ""
     }
     else {
-        const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
-        fetch(info_api_url, options)
+        const infoApiUrl = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
+        fetch(infoApiUrl, options)
         .then(response => response.json())
         .then(data => {
             document.getElementById("recipediv").innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
@@ -98,10 +97,12 @@ function displayRecipes(recipes) {
             currentPage++;
             displayRecipes(recipes);
         }
+        else {
+            window.alert("There are no more pages to display.")
+        }
     });
     pageDiv.appendChild(nextButton);
     recipeList.appendChild(pageDiv);
 }
-
 
 </script>
