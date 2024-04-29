@@ -6,7 +6,7 @@
 <div id = "recipediv">Search something...greatness awaits!</div>
 <div class="info-container">
 <div class="info">
-<p id="info" class="info-text">Welcome to our recipe searcher!<br>Input any prompt into the text box,<br>and click the search button.<br>The results will include the name of the dish with a <br>link to a recipe, and an image of the finished product.<br>The results of the search will appear to the left of this text!</p>
+<p id="info" class="info-text">Welcome to our recipe searcher!<br>Input any prompt into the text box,<br>and click the search button.<br>The results will include the name of the dish with a <br>button to show the recipe, and an image of the finished product.<br></p>
 </div>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -34,32 +34,32 @@ function search() {
             });
         }
         let currentPage = 1;
-const recipesPerPage = 2; // Adjust as needed
+const recipesPerPage = 2;
 function fetchinfo(id) {
-    if (document.getElementById("recipediv").innerHTML != ""){ 
+    if (document.getElementById("recipediv").innerHTML != "") {
         document.getElementById("recipediv").innerHTML = ""
     }
-    const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
-    fetch(info_api_url, options)
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById("recipediv").innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
-        data.extendedIngredients.forEach(ing => {
-            document.getElementById("recipediv").innerHTML += "<li>" + ing.name + "</li>"
+    else {
+        const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
+        fetch(info_api_url, options)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("recipediv").innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
+            data.extendedIngredients.forEach(ing => {
+                document.getElementById("recipediv").innerHTML += "<li>" + ing.name + "</li>"
+            })
+            document.getElementById("recipediv").innerHTML += "<br></ul>" 
+            document.getElementById("recipediv").innerHTML += "<strong>Instructions for " + data.title + "</strong>" + "<br><br><ul>"
+            document.getElementById("recipediv").innerHTML += "<ul><li>" + data.instructions + "</li></ul>"
+            document.getElementById("recipediv").innerHTML += "<br></ul>" 
         })
-        document.getElementById("recipediv").innerHTML += "<br></ul>" 
-        document.getElementById("recipediv").innerHTML += "<strong>Instructions for " + data.title + "</strong>" + "<br><br><ul>"
-        document.getElementById("recipediv").innerHTML += "<ul><li>" + data.instructions + "</li></ul>"
-        document.getElementById("recipediv").innerHTML += "<br></ul>" 
-    }) 
+    }
 }
 function displayRecipes(recipes) {
     const recipeList = document.getElementById("recipediv");
-    recipeList.innerHTML = ""; // Clear previous results
-    // Calculate start and end index for current page
+    recipeList.innerHTML = ""; 
     const startIndex = (currentPage - 1) * recipesPerPage;
     const endIndex = startIndex + recipesPerPage;
-    // Display recipes for the current page
     const recipesToShow = recipes.slice(startIndex, endIndex);
     recipesToShow.forEach(recipe => {
         const recipeDiv = document.createElement("div");
@@ -68,7 +68,6 @@ function displayRecipes(recipes) {
         image.src = recipe.image;
         image.alt = recipe.title;
         image.setAttribute('draggable', false);
-        // Create a link for the recipe title
         const titleLink = document.createElement("button");
         titleLink.addEventListener('click', () => {
             fetchinfo(recipe.id);
@@ -80,11 +79,9 @@ function displayRecipes(recipes) {
         recipeDiv.appendChild(image);
         recipeList.appendChild(recipeDiv);
     });
-    // Add page controls
     const totalPages = Math.ceil(recipes.length / recipesPerPage);
     const pageDiv = document.createElement("div");
     pageDiv.classList.add("page");
-    // Previous page button
     const prevButton = document.createElement("button");
     prevButton.textContent = "<<";
     prevButton.addEventListener("click", () => {
@@ -94,7 +91,6 @@ function displayRecipes(recipes) {
         }
     });
     pageDiv.appendChild(prevButton);
-    // Next page button
     const nextButton = document.createElement("button");
     nextButton.textContent = ">>";
     nextButton.addEventListener("click", () => {
