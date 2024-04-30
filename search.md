@@ -6,7 +6,11 @@
 <div id = "recipediv">Search something...greatness awaits!</div>
 <div class="info-container">
 <div class="info">
-<p id="info" class="info-text">Welcome to the recipe searcher!<br>Input any prompt into the text box,<br>and click the search button.<br>The results will include the name of the dish with a <br>button to show the recipe, and an image of the finished product.<br></p>
+<p id="info" class="info-text">Welcome to the recipe searcher!<br>Input any prompt into the text box,
+<br>and click the search button.
+<br>The results will include the name of the dish with a 
+<br>button to show the recipe, and an image of the finished product.
+<br></p>
 </div>
 </div>
 <div id = "instructions" class = "instructions"></div>
@@ -39,7 +43,6 @@ function fetchinfo(id) {
     if (document.getElementById("recipediv").innerHTML != "") {
         document.getElementById("recipediv").innerHTML = ""
     }
-    else {
         const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
         fetch(info_api_url, options)
         .then(response => response.json())
@@ -53,7 +56,6 @@ function fetchinfo(id) {
             document.getElementById("recipediv").innerHTML += "<ul><li>" + data.instructions + "</li></ul>"
             document.getElementById("recipediv").innerHTML += "<br></ul>" 
         })
-    }
 }
 function displayRecipes(recipes) {
     const recipeList = document.getElementById("recipediv");
