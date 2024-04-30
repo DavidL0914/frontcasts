@@ -1,17 +1,17 @@
 <form>
 <input id = "query" class = "input" placeholder="Search, ex. 'bananas' ">
 </form>
-<link rel="stylesheet" href="/frontcasts/assets/css/style.css">
+<link rel="stylesheet" href="/frontcasts/assets/css/style.css"> <!--This stylesheet was worked on by myself and my group mates.-->
 <button class = "submit" onclick = "search()">Search 🔍</button>
 <div id = "recipediv">Search something...greatness awaits!</div>
 <div class="info-container">
 <div class="info">
-<p id="info" class="info-text">Welcome to our recipe searcher!<br>Input any prompt into the text box,<br>and click the search button.<br>The results will include the name of the dish with a <br>button to show the recipe, and an image of the finished product.<br></p>
+<p id="info" class="info-text">Welcome to the recipe searcher!<br>Input any prompt into the text box,<br>and click the search button.<br>The results will include the name of the dish with a <br>button to show the recipe, and an image of the finished product.<br></p>
 </div>
 </div>
 <div id = "instructions" class = "instructions"></div>
 <script>
-const apiKey = "353ca5d1296e4a1187d417811123d58b";
+const api_key = "353ca5d1296e4a1187d417811123d58b";
 const options = {
                 method: 'GET',
                 headers: {
@@ -21,9 +21,10 @@ const options = {
 function search() {
     document.querySelector(".info").style.display = "none"
     const query = document.getElementById("query").value;
-    const apiKey = "353ca5d1296e4a1187d417811123d58b";
-    const searchApiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&query=${query}`;
-            fetch(searchApiUrl, options)
+    const api_key = "353ca5d1296e4a1187d417811123d58b";
+    const search_api_url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}&query=${query}`;
+    // The external API used in this code was not created by me, and is a publicly available API.
+            fetch(search_api_url, options)
             .then(response => response.json())
             .then(data => {
                 displayRecipes(data.results);
@@ -34,13 +35,13 @@ function search() {
         }
         let currentPage = 1;
 const recipesPerPage = 2;
-function fetchInfo(id) {
+function fetchinfo(id) {
     if (document.getElementById("recipediv").innerHTML != "") {
         document.getElementById("recipediv").innerHTML = ""
     }
     else {
-        const infoApiUrl = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
-        fetch(infoApiUrl, options)
+        const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
+        fetch(info_api_url, options)
         .then(response => response.json())
         .then(data => {
             document.getElementById("recipediv").innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
@@ -93,16 +94,18 @@ function displayRecipes(recipes) {
     const nextButton = document.createElement("button");
     nextButton.textContent = ">>";
     nextButton.addEventListener("click", () => {
-        if (currentPage < totalPages) {
+        if (currentPage < 
+        totalPages) {
             currentPage++;
             displayRecipes(recipes);
         }
         else {
-            window.alert("There are no more pages to display.")
+            window.alert("There are no more pages to show.")
         }
     });
     pageDiv.appendChild(nextButton);
     recipeList.appendChild(pageDiv);
 }
+
 
 </script>
