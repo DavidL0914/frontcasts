@@ -1,12 +1,14 @@
 <form>
 <input id = "query" class = "input" placeholder="Search, ex. 'bananas' ">
 </form>
-<link rel="stylesheet" href="/frontcasts/assets/css/style.css"> <!--This stylesheet was worked on by myself and my group mates.-->
+<link rel="stylesheet" href="/frontcasts/assets/css/style.css">
+ <!--This stylesheet was worked on by myself and my group mates.-->
 <button class = "submit" onclick = "search()">Search 🔍</button>
 <div id = "recipediv">Search something...greatness awaits!</div>
 <div class="info-container">
 <div class="info">
-<p id="info" class="info-text">Welcome to the recipe searcher!<br>Input any prompt into the text box,
+<p id="info" class="info-text">Welcome to the recipe searcher!
+<br>Input any prompt into the text box,
 <br>and click the search button.
 <br>The results will include the name of the dish with a 
 <br>button to show the recipe, and an image of the finished product.
@@ -40,6 +42,7 @@ function search() {
         let currentPage = 1;
 const recipesPerPage = 2;
 function fetchinfo(id) {
+    const recipeList = document.getElementById("recipediv")
     if (document.getElementById("recipediv").innerHTML != "") {
         document.getElementById("recipediv").innerHTML = ""
     }
@@ -47,14 +50,14 @@ function fetchinfo(id) {
         fetch(info_api_url, options)
         .then(response => response.json())
         .then(data => {
-            document.getElementById("recipediv").innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
+            recipediv.innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
             data.extendedIngredients.forEach(ing => {
                 document.getElementById("recipediv").innerHTML += "<li>" + ing.name + "</li>"
             })
-            document.getElementById("recipediv").innerHTML += "<br></ul>" 
-            document.getElementById("recipediv").innerHTML += "<strong>Instructions for " + data.title + "</strong>" + "<br><br><ul>"
-            document.getElementById("recipediv").innerHTML += "<ul><li>" + data.instructions + "</li></ul>"
-            document.getElementById("recipediv").innerHTML += "<br></ul>" 
+            recipeList.innerHTML += "<br></ul>" 
+            recipeList.innerHTML += "<strong>Instructions for " + data.title + "</strong>" + "<br><br><ul>"
+            recipeList.innerHTML += "<ul><li>" + data.instructions + "</li></ul>"
+            recipeList.innerHTML += "<br></ul>" 
         })
 }
 function displayRecipes(recipes) {
