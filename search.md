@@ -41,6 +41,26 @@ function search() {
         }
         let currentPage = 1;
 const recipesPerPage = 2;
+function star(id) {
+    const log_api_url = "http://127.0.0.1:8008/api/users/recipe"
+    data = {
+        id: id,
+        starCount: "5",
+    }
+    const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                },
+                body: JSON.stringify(data),
+                credentials: 'include'
+            };
+    fetch(log_api_url, options)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+}
 function fetchinfo(id) {
     const recipeList = document.getElementById("recipediv")
     if (document.getElementById("recipediv").innerHTML != "") {
