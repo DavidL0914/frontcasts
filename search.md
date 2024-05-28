@@ -44,7 +44,7 @@
         const recipesPerPage = 2;
 
         function star(id, starCount) {
-            const log_api_url = "http://127.0.0.1:8008/api/users/recipe";
+            const log_api_url = "https://backcasts.stu.nighthawkcodingsociety.com/api/users/recipe";
             const data = {
                 id: id,
                 starCount: starCount

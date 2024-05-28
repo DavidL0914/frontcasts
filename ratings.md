@@ -54,7 +54,7 @@
             });
         });
         function fetchRatings() {
-            const ratings_api_url = "http://127.0.0.1:8008/api/users/ratings";
+            const ratings_api_url = "https://backcasts.stu.nighthawkcodingsociety.com/api/users/ratings";
             fetch(ratings_api_url, {
                 method: 'GET',
                 headers: {
