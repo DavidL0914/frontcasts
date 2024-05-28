@@ -16,38 +16,40 @@
 </div>
 </div>
 <div id = "instructions" class = "instructions"></div>
+
 <script>
-const api_key = "353ca5d1296e4a1187d417811123d58b";
-const options = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8',
-                },
-            };
-function search() {
-    document.querySelector(".info").style.display = "none"
-    const query = document.getElementById("query").value;
-    const api_key = "353ca5d1296e4a1187d417811123d58b";
-    const search_api_url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}&query=${query}`;
-    // The external API used in this code was not created by me, and is a publicly available API.
+        const api_key = "272127c95c2e49f59530b1acb1b5de6c";
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+        };
+
+        function search() {
+            document.querySelector(".info").style.display = "none";
+            const query = document.getElementById("query").value;
+            const search_api_url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${api_key}&query=${query}`;
             fetch(search_api_url, options)
-            .then(response => response.json())
-            .then(data => {
-                displayRecipes(data.results);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    displayRecipes(data.results);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
+
         let currentPage = 1;
-const recipesPerPage = 2;
-function star(id) {
-    const log_api_url = "http://127.0.0.1:8008/api/users/recipe"
-    data = {
-        id: id,
-        starCount: "5",
-    }
-    const options = {
+        const recipesPerPage = 2;
+
+        function star(id, starCount) {
+            const log_api_url = "http://127.0.0.1:8008/api/users/recipe";
+            const data = {
+                id: id,
+                starCount: starCount
+            };
+            const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',
@@ -55,82 +57,94 @@ function star(id) {
                 body: JSON.stringify(data),
                 credentials: 'include'
             };
-    fetch(log_api_url, options)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-    })
-}
-function fetchinfo(id) {
-    const recipeList = document.getElementById("recipediv")
-    if (document.getElementById("recipediv").innerHTML != "") {
-        document.getElementById("recipediv").innerHTML = ""
-    }
-        const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
-        fetch(info_api_url, options)
-        .then(response => response.json())
-        .then(data => {
-            recipediv.innerHTML += "<strong>Ingredients for " + data.title + "</strong>" + "<br><br><ul>"
-            data.extendedIngredients.forEach(ing => {
-                document.getElementById("recipediv").innerHTML += "<li>" + ing.name + "</li>"
-            })
-            recipeList.innerHTML += "<br></ul>" 
-            recipeList.innerHTML += "<strong>Instructions for " + data.title + "</strong>" + "<br><br><ul>"
-            recipeList.innerHTML += "<ul><li>" + data.instructions + "</li></ul>"
-            recipeList.innerHTML += "<br></ul>" 
-        })
-}
-function displayRecipes(recipes) {
-    const recipeList = document.getElementById("recipediv");
-    recipeList.innerHTML = ""; 
-    const startIndex = (currentPage - 1) * recipesPerPage;
-    const endIndex = startIndex + recipesPerPage;
-    const recipesToShow = recipes.slice(startIndex, endIndex);
-    recipesToShow.forEach(recipe => {
-        const recipeDiv = document.createElement("div");
-        const image = document.createElement("img");
-        recipeDiv.classList.add("recipe");
-        image.src = recipe.image;
-        image.alt = recipe.title;
-        image.setAttribute('draggable', false);
-        const titleLink = document.createElement("button");
-        titleLink.addEventListener('click', () => {
-            fetchinfo(recipe.id);
-        });
-        titleLink.textContent = recipe.title;
-        const title = document.createElement("h3");
-        title.appendChild(titleLink);
-        recipeDiv.appendChild(title);
-        recipeDiv.appendChild(image);
-        recipeList.appendChild(recipeDiv);
-    });
-    const totalPages = Math.ceil(recipes.length / recipesPerPage);
-    const pageDiv = document.createElement("div");
-    pageDiv.classList.add("page");
-    const prevButton = document.createElement("button");
-    prevButton.textContent = "<<";
-    prevButton.addEventListener("click", () => {
-        if (currentPage > 1) {
-            currentPage--;
-            displayRecipes(recipes);
+            fetch(log_api_url, options)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
-    });
-    pageDiv.appendChild(prevButton);
-    const nextButton = document.createElement("button");
-    nextButton.textContent = ">>";
-    nextButton.addEventListener("click", () => {
-        if (currentPage < 
-        totalPages) {
-            currentPage++;
-            displayRecipes(recipes);
-        }
-        else {
-            window.alert("There are no more pages to show.")
-        }
-    });
-    pageDiv.appendChild(nextButton);
-    recipeList.appendChild(pageDiv);
-}
 
+        function fetchinfo(id) {
+            const recipeList = document.getElementById("recipediv");
+            if (recipeList.innerHTML != "") {
+                recipeList.innerHTML = "";
+            }
+            const info_api_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${api_key}`;
+            fetch(info_api_url, options)
+                .then(response => response.json())
+                .then(data => {
+                    recipeList.innerHTML += "<strong>Ingredients for " + data.title + "</strong><br><br><ul>";
+                    data.extendedIngredients.forEach(ing => {
+                        recipeList.innerHTML += "<li>" + ing.name + "</li>";
+                    });
+                    recipeList.innerHTML += "<br></ul>";
+                    recipeList.innerHTML += "<strong>Instructions for " + data.title + "</strong><br><br><ul>";
+                    recipeList.innerHTML += "<ul><li>" + data.instructions + "</li></ul>";
+                    recipeList.innerHTML += "<br></ul>";
+                });
+        }
 
-</script>
+        function displayRecipes(recipes) {
+            const recipeList = document.getElementById("recipediv");
+            recipeList.innerHTML = "";
+            const startIndex = (currentPage - 1) * recipesPerPage;
+            const endIndex = startIndex + recipesPerPage;
+            const recipesToShow = recipes.slice(startIndex, endIndex);
+            recipesToShow.forEach(recipe => {
+                const recipeDiv = document.createElement("div");
+                const image = document.createElement("img");
+                recipeDiv.classList.add("recipe");
+                image.src = recipe.image;
+                image.alt = recipe.title;
+                image.setAttribute('draggable', false);
+                const titleLink = document.createElement("button");
+                titleLink.addEventListener('click', () => {
+                    fetchinfo(recipe.id);
+                });
+                const starDiv = document.createElement("div");
+                for (let i = 1; i <= 5; i++) {
+                    const starButton = document.createElement("button");
+                    starButton.textContent = "⭐";
+                    starButton.addEventListener('click', () => {
+                        star(recipe.id, i);
+                    });
+                    starDiv.appendChild(starButton);
+                }
+                titleLink.textContent = recipe.title;
+                const title = document.createElement("h3");
+                title.appendChild(titleLink);
+                recipeDiv.appendChild(title);
+                recipeDiv.appendChild(image);
+                recipeDiv.appendChild(starDiv);
+                recipeList.appendChild(recipeDiv);
+            });
+
+            const totalPages = Math.ceil(recipes.length / recipesPerPage);
+            const pageDiv = document.createElement("div");
+            pageDiv.classList.add("page");
+            const prevButton = document.createElement("button");
+            prevButton.textContent = "<<";
+            prevButton.addEventListener("click", () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayRecipes(recipes);
+                }
+            });
+            pageDiv.appendChild(prevButton);
+            const nextButton = document.createElement("button");
+            nextButton.textContent = ">>";
+            nextButton.addEventListener("click", () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayRecipes(recipes);
+                } else {
+                    window.alert("There are no more pages to show.");
+                }
+            });
+            pageDiv.appendChild(nextButton);
+            recipeList.appendChild(pageDiv);
+        }
+    </script>

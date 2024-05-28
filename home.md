@@ -21,6 +21,7 @@ f
     <a onclick='window.location.href="{{site.baseurl}}/search.html"'>Search</a>
     <a onclick='window.location.href="{{site.baseurl}}/image"'>Share</a>
     <a onclick='window.location.href="{{site.baseurl}}/ML.html"'>Diabetes!</a>
+    <a onclick='window.location.href="{{site.baseurl}}/ratings.html"'>User Ratings</a>
     <button class = "logoutbutton" onclick="eraseCookie()">Logout</button>
 </nav>
 
