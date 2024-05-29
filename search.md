@@ -47,9 +47,9 @@
         function star(id, starCount, uid) {
             const log_api_url = "{{site.backendurl}}/api/users/recipe";
             const data = {
-                id: id,
-                starCount: starCount,
-                uid: uid,
+                "id": id,
+                "starCount": starCount,
+                "uid": uid,
             };
             const options = {
                 method: 'POST',
