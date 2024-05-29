@@ -53,7 +53,6 @@
                 fetchRatings();
             });
         });
-
         function fetchRatings() {
             const ratings_api_url = "{{site.backendurl}}/api/users/ratings";
             fetch(ratings_api_url, {
@@ -71,7 +70,6 @@
                 console.error(error);
             });
         }
-
         function fetchAllRecipesInfo(ratingsData) {
             const recipeIds = Object.keys(ratingsData);
             const recipePromises = recipeIds.map(recipeId => fetchRecipeInfo(recipeId));
@@ -90,7 +88,6 @@
                     console.error(error);
                 });
         }
-
         function sortAndDisplayRatings(combinedData) {
             const sortOption = document.getElementById('sort-options').value;
             if (sortOption === 'alphabet') {
@@ -102,15 +99,12 @@
             }
             displayRatings(combinedData);
         }
-
         function alphabeticalSort(a, b) {
             return a.ratingInfo.uid.localeCompare(b.ratingInfo.uid);
         }
-
         function ratingSort(a, b) {
             return b.ratingInfo.starCount - a.ratingInfo.starCount;
         }
-
         function groupByUserSort(data) {
             const groupedData = {};
             data.forEach(item => {
@@ -126,7 +120,6 @@
             });
             return sortedGroupedData;
         }
-
         function displayRatings(sortedData) {
             const ratingsDiv = document.getElementById("ratings-div");
             ratingsDiv.innerHTML = "";
@@ -149,7 +142,6 @@
                 ratingsDiv.appendChild(ratingDiv);
             });
         }
-
         function fetchRecipeInfo(recipeId) {
             const recipe_api_url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=272127c95c2e49f59530b1acb1b5de6c`;
             return fetch(recipe_api_url, {

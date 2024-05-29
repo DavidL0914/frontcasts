@@ -59,6 +59,8 @@
                 body: JSON.stringify(data),
                 credentials: 'include'
             };
+            console.log(JSON.stringify(data))
+            console.log(data)
             fetch(log_api_url, options)
                 .then(response => response.json())
                 .then(data => {
