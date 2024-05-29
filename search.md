@@ -1,6 +1,10 @@
 <form>
 <input id = "query" class = "input" placeholder="Search, ex. 'bananas' ">
 </form>
+<form>
+<input id = "userQuery" class = "input" placeholder="Username">
+</form>
+<button class = "submit" onclick = "saveUser()">Save</button>
 <link rel="stylesheet" href="/frontcasts/assets/css/style.css">
  <!--This stylesheet was worked on by myself and my group mates.-->
 <button class = "submit" onclick = "search()">Search 🔍</button>
@@ -39,15 +43,17 @@
                     console.error(error);
                 });
         }
-
+        function saveUser() {
+            const uid = document.getElementById("userQuery").value;
+        }
         let currentPage = 1;
         const recipesPerPage = 2;
-
-        function star(id, starCount) {
+        function star(id, starCount, uid) {
             const log_api_url = "https://backcasts.stu.nighthawkcodingsociety.com/api/users/recipe";
             const data = {
                 id: id,
-                starCount: starCount
+                starCount: starCount,
+                uid: uid,
             };
             const options = {
                 method: 'POST',
@@ -109,7 +115,7 @@
                     const starButton = document.createElement("button");
                     starButton.textContent = "⭐";
                     starButton.addEventListener('click', () => {
-                        star(recipe.id, i);
+                        star(recipe.id, i, uid);
                     });
                     starDiv.appendChild(starButton);
                 }
