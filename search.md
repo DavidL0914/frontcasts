@@ -43,9 +43,6 @@
                     console.error(error);
                 });
         }
-        function saveUser() {
-            const uid = document.getElementById("userQuery").value;
-        }
         let currentPage = 1;
         const recipesPerPage = 2;
         function star(id, starCount, uid) {
@@ -94,6 +91,7 @@
         }
 
         function displayRecipes(recipes) {
+            const uid = document.getElementById("userQuery").value;
             const recipeList = document.getElementById("recipediv");
             recipeList.innerHTML = "";
             const startIndex = (currentPage - 1) * recipesPerPage;
