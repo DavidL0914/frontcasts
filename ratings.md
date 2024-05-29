@@ -144,7 +144,7 @@
             });
         }
         function fetchRecipeInfo(recipeId) {
-            const recipe_api_url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=bda6dcbd9ea9479995b632addb9f3761`;
+            const recipe_api_url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=353ca5d1296e4a1187d417811123d58b`;
             return fetch(recipe_api_url, {
                 method: 'GET',
                 headers: {
