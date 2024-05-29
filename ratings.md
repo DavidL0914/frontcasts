@@ -64,6 +64,7 @@
                 return response.json();
             })
             .then(data => {
+                console.log(data)
                 fetchAllRecipesInfo(data);
             })
             .catch(error => {
