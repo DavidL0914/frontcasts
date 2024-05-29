@@ -21,7 +21,7 @@
 <div id = "instructions" class = "instructions"></div>
 
 <script>
-        const api_key = "353ca5d1296e4a1187d417811123d58b";
+        const api_key = "e54cf75e2de848beb160cd214a0dad51";
         const options = {
             method: 'GET',
             headers: {
