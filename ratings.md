@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -59,10 +58,12 @@
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8',
-                },
-                credentials: 'include'
+                }
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                return response.json();
+            })
             .then(data => {
                 fetchAllRecipesInfo(data);
             })
