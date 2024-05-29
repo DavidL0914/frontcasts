@@ -61,7 +61,7 @@
                 }
             })
             .then(response => {
-                return resolve(JSON.parse(response));
+                return response.json();
             })
             .then(data => {
                 fetchAllRecipesInfo(data);
