@@ -4,7 +4,6 @@
 <form>
 <input id = "userQuery" class = "input" placeholder="Username">
 </form>
-<button class = "submit" onclick = "saveUser()">Save</button>
 <link rel="stylesheet" href="/frontcasts/assets/css/style.css">
  <!--This stylesheet was worked on by myself and my group mates.-->
 <button class = "submit" onclick = "search()">Search 🔍</button>
