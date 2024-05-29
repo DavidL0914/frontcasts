@@ -45,7 +45,7 @@
         let currentPage = 1;
         const recipesPerPage = 2;
         function star(id, starCount, uid) {
-            const log_api_url = "https://backcasts.stu.nighthawkcodingsociety.com/api/users/recipe";
+            const log_api_url = "{{site.backendurl}}/api/users/recipe";
             const data = {
                 id: id,
                 starCount: starCount,
