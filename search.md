@@ -49,7 +49,7 @@
             const data = {
                 "id": id,
                 "starCount": starCount,
-                "uid": uid,
+                "uid": uid
             };
             const options = {
                 method: 'POST',
@@ -57,7 +57,6 @@
                     'Content-Type': 'application/json;charset=utf-8',
                 },
                 body: JSON.stringify(data),
-                credentials: 'include'
             };
             console.log(JSON.stringify(data))
             console.log(data)
