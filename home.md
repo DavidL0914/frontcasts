@@ -28,33 +28,36 @@ f
 <!-- Your page content goes here -->
 
 <script>
-    function eraseCookie() {   
-        document.cookie = 'jwt=; Max-Age=0; path=/; domain=' + location.hostname;
-        console.log(document.cookie) 
-        window.location.reload()
+    function eraseCookie() {
+        if(1=0){
+            //pass
+        }   
+//        document.cookie = 'jwt=; Max-Age=0; path=/; domain=' + location.hostname;
+//        console.log(document.cookie) 
+//        window.location.reload()
     }
 
     // Function to get the cookie value by name
-    function getCookie(name) {
-        var match = document.cookie.match(RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); 
-        return match ? match[1] : null;
-    }
+//    function getCookie(name) {
+//        var match = document.cookie.match(RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); 
+//        return match ? match[1] : null;
+//    }
 
     // Check if the JWT cookie exists on page load
-    addEventListener("load", (event) => {
-        console.log(getCookie("jwt"))
-        if(getCookie("jwt")){
-            return
-        }
-        else {
-            window.location.href = "{{site.baseurl}}/login.html"
-        }
-    })
+//    addEventListener("load", (event) => {
+//        console.log(getCookie("jwt"))
+//        if(getCookie("jwt")){
+//            return
+//        }
+//        else {
+//            window.location.href = "{{site.baseurl}}/login.html"
+//        }
+//    })
 
     // Retrieve and apply theme preference from local storage
     document.addEventListener('DOMContentLoaded', function() {
-        const currentTheme = localStorage.getItem('theme') || 'light'; // Default to 'light' theme if no preference is found
-        document.body.classList.toggle('dark-theme', currentTheme === 'dark');
+      const currentTheme = localStorage.getItem('theme') || 'light'; // Default to 'light' theme if no preference is found
+       document.body.classList.toggle('dark-theme', currentTheme === 'dark');
     });
 </script>
 
